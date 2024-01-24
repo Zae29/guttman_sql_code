@@ -17,8 +17,10 @@
 --
 -- Drop Database
 
+DROP DATABASE IF EXISTS guttman_classdb_assign1;
 
-CREATE DATABASE  IF NOT EXISTS guttman_classdb_assign1;
+CREATE DATABASE  IF NOT EXISTS guttman_classdb_assign1 CHARACTER SET utf8mb3;
+
 
 USE guttman_classdb_assign1;
 
@@ -31,7 +33,8 @@ USE guttman_classdb_assign1;
 
 -- --------------------------------------------------------
 
---
+DR0P USER
+
 -- Table structure for table `customers`
 --
 
