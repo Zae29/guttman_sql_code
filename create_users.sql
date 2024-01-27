@@ -26,6 +26,7 @@ SELECT 'Completed adding rt_user' AS 'INSTALLATION DONE';
 
 SELECT 'DROPPING USER brt_user' AS 'INSTALLATION STARTED';
 
+-- ================================
 DROP USER
 IF EXISTS 'brt_user'@'localhost';
 
@@ -53,6 +54,7 @@ FROM mysql.user;
 
 SELECT 'DROPPING USER admin_007' AS 'INSTALLATION STARTED';
 
+-- =================================================
 DROP USER
 IF EXISTS 'admin_007'@'%';
 
