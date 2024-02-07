@@ -168,7 +168,7 @@ SELECT 'ADDING USER admin_002' AS 'INSTALLATION PROGRESSING';
 
         SELECT user, show_db_priv, account_locked
         FROM   mysql.user;
-        
+
 
 
 
@@ -176,3 +176,74 @@ SELECT 'ADDING USER admin_002' AS 'INSTALLATION PROGRESSING';
 
   SELECT user, show_db_priv, account_locked
   FROM   mysql.user;
+/*********************************************
+*/
+SELECT 'ADDING ROLES ' AS 'INSTALLATION PROGRESSING';
+-- CREATE ROLE
+CREATE ROLE
+IF NOT EXISTS
+'read_only_classicmodels_db',
+'admin_user',
+'read_only_employees_db',
+'app_user';
+
+SELECT user, show_db_priv, account_locked
+FROM mysql.user;
+
+-- GRANT PRIVILEGES
+GRANT SELECT
+ON classicmodels.*
+TO 'read_only_classicmodels_db'@'%';
+
+GRANT CREATE, DROP
+ON employees.*
+TO 'admin_user'@'%';
+
+GRANT CREATE,DROP
+ON classicmodels.*
+TO 'admin_user'@'%';
+
+Grant SHOW DATABASES
+ON *.*
+TO 'admin_user'@'%';
+
+GRANT INSERT, UPDATE
+ON employees.employees
+TO 'app_user'@'%';
+
+GRANT SELECT
+ON employees.*
+TO 'read_only_employees_db'@'%';
+
+SELECT user, show_db_priv, account_locked
+FROM mysql.user;
+
+-- CREATE ROLES
+SELECT 'CREATE ROLES' AS 'INSTALLATION PROGRESSING';
+GRANT 'admin_007' TO 'admin_006';
+
+GRANT 'read_only_classicmodels_db' to 'admin_001', 'admin_003';
+
+GRANT 'read_only_employees_db' to 'admin_002', 'admin_004';
+
+GRANT 'app_user' TO 'admin_006';
+
+GRANT 'admin_user' TO 'admin_005';
+
+GRANT ALL PRIVILEGES ON guttman_202db_assign4.* TO 'admin_005'@'%';
+GRANT ALL PRIVILEGES ON classicmodels.* TO 'admin_003'@'%';
+
+FLUSH PRIVILEGES;
+
+-- CREATE ROLES
+SELECT 'ENABLING ROLES' AS 'INSTALLATION PROGRESSING';
+
+SET DEFAULT
+ROLE ALL TO 'admin_001'@'%', 'admin_002'@'%',
+            'admin_003'@'%', 'admin_004'@'%',
+            'admin_005'@'%', 'admin_006'@'%';
+
+-- CREATE ROLES
+SELECT 'SCRIPT DONE' AS 'INSTALLATION PROGRESSING';
+/****************************************************
+*/
