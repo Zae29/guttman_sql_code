@@ -81,9 +81,9 @@ SELECT '' AS 'SCRIPT COMPLETED'\G
 SELECT '1' AS 'JOIN STATEMENTS' \G
 SELECT m.name NAME, c.committee_name AS
 'Committee Assignment'
-FROM  members  m
-JOIN  committees  c
-ON    m.committee_id = c.committee_id;
+FROM    members  m
+JOIN    committes  c
+ON      m.committee_id = c.committee_id;
 
 SELECT '2' AS 'INNER JOIN STATEMENTS' \G
 SELECT m.name NAME, c.committee_name AS
